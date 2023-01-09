@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Trabalho de Instalação - Relatório - Etapa1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="p-style%22text-aligncenter%22universidade-federal-de-lavrasbr-departamento-de-ci%C3%AAncia-da-computa%C3%A7%C3%A3obr-gcc125---rede-de-computadores---20222br"><p style="text-align:center">Universidade Federal de Lavras<br> Departamento de Ciência da Computação<br>  GCC125 - Rede de Computadores - 2022/2<br></h1>
+<h1 id="trabalho-de-instala%C3%A7%C3%A3o---etapa-1">Trabalho de Instalação - Etapa 1</h1>
+<ul>
+<li>
+<p>Professor: Hermes Pimenta de Moraes Junior</p>
+</li>
+<li>
+<p>Turma: 10A</p>
+</li>
+<li>
+<p>Alunos:</p>
+<ul>
+<li>David de Jesus Costa</li>
+<li>Eduardo Dezena Gonçalves</li>
+<li>Leonardo Elias Rodrigues</li>
+<li>Victor Gonçalves Lima</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-altera%C3%A7%C3%A3o-da-senha-de-usu%C3%A1rio">1. Alteração da senha de usuário</h1>
+<p>A senha do usuário <em><strong>aluno</strong></em> foi alterado em ambas as VM's (<strong>192.168.1.41</strong> e <strong>192.168.1.42</strong>) através do comando <code>passwd</code>. A nova senha é <strong>gpu2022/2</strong>.</p>
+<pre><code>sudo passwd
+</code></pre>
+<h1 id="2-servi%C3%A7o-de-sincroniza%C3%A7%C3%A3o-de-hora">2. Serviço de sincronização de hora</h1>
+<h2 id="21-sincronizando-a-data-da-primeira-vm-com-um-servidor-do-ntpbr">2.1. Sincronizando a data da primeira VM com um servidor do NTP.br</h2>
+<p>Uma vez logado na VM <strong>192.168.1.41</strong> que se conectará em um servidor do NTP.br e que será a máquina hospedeira do tempo, utilizamos o seguinte comando para vizualizar a data e hora atual:</p>
+<pre><code>date
+</code></pre>
+<p>Instalamos o <em>chrony</em> utilizando o comando:</p>
+<pre><code>sudo apt install chrony
+</code></pre>
+<p>Interronpemos o serviço do <em>chrony</em> para modificar o arquivo de configuração:</p>
+<pre><code>sudo service stop chrony
+</code></pre>
+<p>Mudamos então o valor da hora para um valor inválido (00:00:00) para teste, com o seguinte comando e verificamos com o comando <code>date</code>:</p>
+<pre><code>sudo timedatectl set-time 00:00:00
+</code></pre>
+<p>Abrimos o seguinte arquivo de configuração do <em>chrony</em> na máquina <code>/etc/chrony/chrony.conf</code> para editar:</p>
+<pre><code>sudo nano /etc/chrony/chrony.conf
+</code></pre>
+<p>E configuramos para o seguinte estado, corforme o tutorial do <a href="https://ntp.br/guia/linux/">NTP.br</a>:</p>
+<pre><code># servidores publicos do NTP.br com NTS disponível
+server a.st1.ntp.br iburst
+server b.st1.ntp.br iburst
+server c.st1.ntp.br iburst
+server d.st1.ntp.br iburst
+server gps.ntp.br iburst
+
+# caso deseje pode configurar servidores adicionais com NTS, como os da cloudflare e netnod
+# nesse caso basta descomentar as linhas a seguir
+# server time.cloudflare.com iburst nts
+# server nts.netnod.se iburst nts
+
+# arquivo usado para manter a informação do atraso do seu relógio local
+driftfile /var/lib/chrony/chrony.drift
+
+# local para as chaves e cookies NTS
+ntsdumpdir /var/lib/chrony
+
+# se quiser um log detalhado descomente as linhas a seguir
+#log tracking measurements statistics
+#logdir /var/log/chrony
+
+# erro máximo tolerado em ppm em relação aos servidores
+maxupdateskew 100.0
+
+# habilita a sincronização via kernel do real-time clock a cada 11 minutos
+rtcsync
+
+# ajusta a hora do sistema com um &quot;salto&quot;, de uma só vez, ao invés de
+# ajustá-la aos poucos corrigindo a frequência, mas isso apenas se o erro
+# for maior do que 1 segundo e somente para os 3 primeiros ajustes
+makestep 1 3
+
+# diretiva que indica que o offset UTC e leapseconds devem ser lidos
+# da base tz (de time zone) do sistema
+leapsectz right/UTC
+</code></pre>
+<p>Após salvar o arquivo, iniciamos o serviço do <em>chrony</em>:</p>
+<pre><code>sudo systemctl start chrony
+</code></pre>
+<p>Com o seguinte comando, podemos verificar os servidores do <strong>NTP.br</strong> adicionados como fontes:</p>
+<pre><code>chronyc sources
+</code></pre>
+<p>E utilizando o seguinte comando, podemos verificar o status da sincronização do relógio da máquina, que mostrará a mesma sincronizada de acordo com o servidor <strong>gps.jd.ntp.br</strong> (prioridade):</p>
+<pre><code>chronyc tracking
+</code></pre>
+<p>Utilizando novamente o comando <code>date</code> para verificar a data da máquina, percebemos que ela foi sincronizada, e se tentarmos alterá-la novamente com <code>sudo timedatectl set-time 00:00:00</code>, receberemos a seguinte mensagem de erro:</p>
+<pre><code>Failed to set time: Automatic time synchronization is enabled
+</code></pre>
+<h2 id="22-sincronizando-a-data-da-segunda-vm-com-a-primeira">2.2. Sincronizando a data da segunda VM com a primeira</h2>
+<p>Abrimos novamente o arquivo de configuração na primeira VM (192.168.1.41) com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos o seguinte trech, permitindo que a segunda VM (192.168.1.42) consiga acessar a primeira como cliente NTP:</p>
+<pre><code>...
+
+# permitime acesso aos seguintes clientes NTP
+allow 192.168.1.42
+</code></pre>
+<p>Executamos os mesmos passos anteriores para instalação do <em>chrony</em> na segunda VM:</p>
+<pre><code>sudo apt install chrony
+sudo systemctl stop chrony
+</code></pre>
+<p>Novamente colocamos a data em um estado incorreto para teste e verificamos:</p>
+<pre><code>sudo timedatectl set-time 00:00:00
+date
+</code></pre>
+<p>Abrimos e modificamos o seguinte arquivo de configuração do <em>chrony</em> na máquina com o comando <code>sudo nano /etc/chrony/chrony.conf</code>e adicionamos a primeira máquina virtual como servidor a ser buscado:</p>
+<pre><code># servidores publicos do NTP.br com NTS disponível
+server 192.168.1.41 iburst
+
+...
+</code></pre>
+<p>Ativamos o serviço do <em>chrony</em> e verificamos com os seguintes comandos que a máquina está sincronizada com a máquina 192.168.1.41:</p>
+<pre><code>chronyc sources
+chronyc tracking
+date
+</code></pre>
+<h1 id="3-servidor-web">3. Servidor WEB</h1>
+<p>Os passos abaixo foram usados para configurar o servidor WEB na VM <strong>192.168.1.42</strong>.</p>
+<h2 id="31-instala%C3%A7%C3%A3o-do-servidor-apache-2">3.1. Instalação do servidor Apache 2</h2>
+<p>A instalação do apache 2 foi feita com os seguintes comandos:</p>
+<pre><code>sudo apt update
+sudo apt install apache2
+</code></pre>
+<h2 id="32-testando-a-instala%C3%A7%C3%A3o-do-servidor-web">3.2. Testando a instalação do servidor WEB</h2>
+<p>Em um browser de uma máquina conectada às VM's por meio de VPN, é digitado o endereço IP da VM do servidor WEB: <strong>http://192.168.1.42</strong>.</p>
+<img src="img/3.2-1.png" width="750">
+<p>A seguinte página do servidor web do Apache é exibida, mostrando o funcionamento.</p>
+<img src="img/3.2-2.png" width="750">
+<h1 id="4-acessando-os-relat%C3%B3rios-e-trabalhos-entregues-do-grupo-por-meio-do-servidor-web">4. Acessando os relatórios e trabalhos entregues do grupo por meio do servidor WEB</h1>
+<p>Após a instalação do servidor Apache, sua página inicial padrão acima foi modificada a fim de criar uma nova página web que incorpora os trabalhos da equipe e seus relatórios.</p>
+<p>Estando conectado às VM's por meio de VPN, a página inicial pode ser acessada pelo endereço: http://192.168.1.42</p>
+
+</body>
+</html>
