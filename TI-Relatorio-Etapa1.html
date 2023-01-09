@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Trabalho de Instalação - Relatório - Etapa1.md</title>
+<title>Trabalho de Instalação - Relatório - Etapa 1</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -360,7 +360,7 @@ code {
           : 'default'
     });
   </script>
-<h1 id="p-style%22text-aligncenter%22universidade-federal-de-lavrasbr-departamento-de-ci%C3%AAncia-da-computa%C3%A7%C3%A3obr-gcc125---rede-de-computadores---20222br"><p style="text-align:center">Universidade Federal de Lavras<br> Departamento de Ciência da Computação<br>  GCC125 - Rede de Computadores - 2022/2<br></h1>
+<h1 id="p-style%22text-aligncenter%22img-src%22uflapng%22-width%22500%22br-departamento-de-ci%C3%AAncia-da-computa%C3%A7%C3%A3obr-gcc125---rede-de-computadores---20222br"><p style="text-align:center"><img src="ufla.png" width="500"><br> Departamento de Ciência da Computação<br>  GCC125 - Rede de Computadores - 2022/2<br></h1>
 <h1 id="trabalho-de-instala%C3%A7%C3%A3o---etapa-1">Trabalho de Instalação - Etapa 1</h1>
 <ul>
 <li>
@@ -380,7 +380,7 @@ code {
 </li>
 </ul>
 <h1 id="1-altera%C3%A7%C3%A3o-da-senha-de-usu%C3%A1rio">1. Alteração da senha de usuário</h1>
-<p>A senha do usuário <em><strong>aluno</strong></em> foi alterado em ambas as VM's (<strong>192.168.1.41</strong> e <strong>192.168.1.42</strong>) através do comando <code>passwd</code>. A nova senha é <strong>gpu2022/2</strong>.</p>
+<p>A senha do usuário <strong>aluno</strong> foi alterado em ambas as VM's (<strong>192.168.1.41</strong> e <strong>192.168.1.42</strong>) através do comando <code>passwd</code>. A nova senha é <strong>gpu2022/2</strong>.</p>
 <pre><code>sudo passwd
 </code></pre>
 <h1 id="2-servi%C3%A7o-de-sincroniza%C3%A7%C3%A3o-de-hora">2. Serviço de sincronização de hora</h1>
@@ -485,12 +485,27 @@ sudo apt install apache2
 </code></pre>
 <h2 id="32-testando-a-instala%C3%A7%C3%A3o-do-servidor-web">3.2. Testando a instalação do servidor WEB</h2>
 <p>Em um browser de uma máquina conectada às VM's por meio de VPN, é digitado o endereço IP da VM do servidor WEB: <strong>http://192.168.1.42</strong>.</p>
-<img src="3.2-1.png" width="750">
+<img src="TI-R1-3.2-1.png" width="750">
 <p>A seguinte página do servidor web do Apache é exibida, mostrando o funcionamento.</p>
-<img src="3.2-2.png" width="750">
+<img src="TI-R1-3.2-2.png" width="750">
+<h2 id="33-inserindo-p%C3%A1ginas-html-no-servidor-web">3.3. Inserindo páginas html no servidor web</h2>
+<p>Com o seguinte comando, vamos ao diretório do servidor apache onde os arquivos html serão dispostos.</p>
+<pre><code>cd /var/www/html/
+</code></pre>
+<p>Com o seguinte comando, removemos todos os arquivos da pasta a fim de preparar o ambiente para nossos arquivos</p>
+<pre><code>sudo rm *
+</code></pre>
+<p>Nossos arquivos são baixados do repositório https://github.com/Victorgonl/GCC125 através do comando <code>wget</code>dentro da pasta <code>/var/www/html/</code></p>
+<pre><code>sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/index.html
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/ufla.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa1.html
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/3.2-1.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/3.2-2.png
+</code></pre>
+<p>Ao acessarmos novamente por um browser de uma máquina conectada às VM's por meio de VPN o endereço http://192.168.1.42, encontramos nossa página inicial.</p>
 <h1 id="4-acessando-os-relat%C3%B3rios-e-trabalhos-entregues-do-grupo-por-meio-do-servidor-web">4. Acessando os relatórios e trabalhos entregues do grupo por meio do servidor WEB</h1>
 <p>Após a instalação do servidor Apache, sua página inicial padrão acima foi modificada a fim de criar uma nova página web que incorpora os trabalhos da equipe e seus relatórios.</p>
 <p>Estando conectado às VM's por meio de VPN, a página inicial pode ser acessada pelo endereço: http://192.168.1.42</p>
-
+<img src="TI-R1-3.3.png" width="750">
 </body>
 </html>
