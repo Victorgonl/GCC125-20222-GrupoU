@@ -388,23 +388,23 @@ code {
 </code></pre>
 <h1 id="2-servi%C3%A7o-de-sincroniza%C3%A7%C3%A3o-de-hora">2. Serviço de sincronização de hora</h1>
 <h2 id="21-sincronizando-a-hora-da-primeira-vm-com-um-servidor-do-a-href%22httpsntpbr%22ntpbra">2.1. Sincronizando a hora da primeira VM com um servidor do <a href="https://ntp.br/">NTP.br</a></h2>
-<p>Uma vez logado na VM <strong>192.168.1.41</strong> que se conectará em um servidor do <a href="https://ntp.br/">NTP.br</a> e que será a máquina hospedeira do tempo para a VM <strong>192.168.1.42</strong>, utilizamos o seguinte comando para vizualizar a data e hora atual:</p>
+<p>Uma vez logado na VM <strong>192.168.1.41</strong> que se conectará em um servidor do <a href="https://ntp.br/">NTP.br</a> e que será a máquina hospedeira do tempo para a VM <strong>192.168.1.42</strong>, utilizamos o seguinte comando para vizualizar a data e hora atual.</p>
 <pre><code>date
 </code></pre>
-<p>Instalamos o <em>chrony</em> utilizando o comando:</p>
+<p>Instalamos o <em>chrony</em> utilizando o comando</p>
 <pre><code>sudo apt install chrony
 </code></pre>
-<p>Interronpemos o serviço do <em>chrony</em> para modificar o arquivo de configuração dele:</p>
+<p>Interronpemos o serviço do <em>chrony</em> para modificar o arquivo de configuração dele.</p>
 <pre><code>sudo service stop chrony
 </code></pre>
-<p>Mudamos então o valor da hora para um valor errado (00:00:00) para teste com o comando <code>timedatectl set-time</code> e verificamos com o comando <code>date</code>:</p>
+<p>Mudamos então o valor da hora para um valor errado (00:00:00) para teste com o comando <code>timedatectl set-time</code> e verificamos com o comando <code>date</code>.</p>
 <pre><code>sudo timedatectl set-time 00:00:00
 date
 </code></pre>
-<p>Abrimos o seguinte arquivo de configuração do <em>chrony</em> na máquina <code>/etc/chrony/chrony.conf</code> para editar com o comando <code>nano</code>:</p>
+<p>Abrimos o seguinte arquivo de configuração do <em>chrony</em> na máquina <code>/etc/chrony/chrony.conf</code> para editar com o comando <code>nano</code>.</p>
 <pre><code>sudo nano /etc/chrony/chrony.conf
 </code></pre>
-<p>E configuramos para o seguinte estado, corforme o tutorial do <a href="https://ntp.br/guia/linux/">NTP.br</a>:</p>
+<p>E configuramos para o seguinte estado, corforme o tutorial do <a href="https://ntp.br/guia/linux/">NTP.br</a>.</p>
 <pre><code># servidores publicos do NTP.br com NTS disponível
 server a.st1.ntp.br iburst
 server b.st1.ntp.br iburst
@@ -442,40 +442,40 @@ makestep 1 3
 # da base tz (de time zone) do sistema
 leapsectz right/UTC
 </code></pre>
-<p>Após salvar o arquivo, iniciamos o serviço do <em>chrony</em>:</p>
+<p>Após salvar o arquivo, iniciamos o serviço do <em>chrony</em>.</p>
 <pre><code>sudo systemctl start chrony
 </code></pre>
-<p>Com o seguinte comando, podemos verificar os servidores do <strong>NTP.br</strong> adicionados como fontes:</p>
+<p>Com o seguinte comando, podemos verificar os servidores do <a href="https://ntp.br/guia/linux/">NTP.br</a> adicionados como fontes.</p>
 <pre><code>chronyc sources
 </code></pre>
-<p>E utilizando o seguinte comando, podemos verificar o status da sincronização do relógio da máquina, que mostrará a mesma sincronizada de acordo com o servidor <strong>gps.jd.ntp.br</strong> (prioridade):</p>
+<p>E utilizando o seguinte comando, podemos verificar o status da sincronização do relógio da máquina, que mostrará a mesma sincronizada de acordo com o servidor <code>gps.jd.ntp.br</code> (prioridade).</p>
 <pre><code>chronyc tracking
 </code></pre>
 <p>Utilizando novamente o comando <code>date</code> para verificar a data da máquina, percebemos que ela foi sincronizada, e se tentarmos alterá-la novamente com <code>sudo timedatectl set-time 00:00:00</code>, receberemos a seguinte mensagem de erro:</p>
 <pre><code>Failed to set time: Automatic time synchronization is enabled
 </code></pre>
 <h2 id="22-sincronizando-a-hora-da-segunda-vm-com-a-primeira">2.2. Sincronizando a hora da segunda VM com a primeira</h2>
-<p>Abrimos novamente o arquivo de configuração na primeira VM (192.168.1.41) com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos o seguinte trecho, permitindo que a segunda VM (192.168.1.42) consiga acessar a primeira como cliente NTP:</p>
+<p>Abrimos novamente o arquivo de configuração na primeira VM (192.168.1.41) com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos o seguinte trecho, permitindo que a segunda VM (192.168.1.42) consiga acessar a primeira como cliente NTP.</p>
 <pre><code>[...]
 
 # permitime acesso aos seguintes clientes NTP
 allow 192.168.1.42
 </code></pre>
-<p>Executamos os mesmos passos anteriores para instalação do <em>chrony</em> na segunda VM (192.168.1.42):</p>
+<p>Executamos os mesmos passos anteriores para instalação do <em>chrony</em> na segunda VM (192.168.1.42).</p>
 <pre><code>sudo apt install chrony
 sudo systemctl stop chrony
 </code></pre>
-<p>Novamente colocamos a data em um estado incorreto para teste e verificamos:</p>
+<p>Novamente colocamos a data em um estado incorreto para teste e verificamos.</p>
 <pre><code>sudo timedatectl set-time 00:00:00
 date
 </code></pre>
-<p>Abrimos e modificamos o seguinte arquivo de configuração do <em>chrony</em> na máquina com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos a primeira máquina virtual como servidor a ser buscado:</p>
+<p>Abrimos e modificamos o seguinte arquivo de configuração do <em>chrony</em> na máquina com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos a primeira máquina virtual como servidor a ser buscado.</p>
 <pre><code># servidores publicos do NTP.br com NTS disponível
 server 192.168.1.41 iburst
 
 [...]
 </code></pre>
-<p>Ativamos o serviço do <em>chrony</em> e verificamos com os seguintes comandos que o tempo da máquina está sincronizada com a máquina 192.168.1.41:</p>
+<p>Ativamos o serviço do <em>chrony</em> e verificamos com os seguintes comandos que o tempo da máquina está sincronizada com a máquina <strong>192.168.1.41</strong>.</p>
 <pre><code>chronyc sources
 chronyc tracking
 date
@@ -496,10 +496,10 @@ sudo apt install apache2
 <p>Com o seguinte comando, vamos ao diretório do servidor apache onde os arquivos html serão dispostos:</p>
 <pre><code>cd /var/www/html/
 </code></pre>
-<p>Com o seguinte comando, removemos todos os arquivos da pasta a fim de preparar o ambiente para nossos arquivos:</p>
+<p>Com o seguinte comando, removemos todos os arquivos da pasta a fim de preparar o ambiente para nossos arquivos.</p>
 <pre><code>sudo rm *
 </code></pre>
-<p>Nossos arquivos são baixados do repositório https://github.com/Victorgonl/GCC125-20222-GrupoU através do comando <code>wget</code> dentro da pasta <code>/var/www/html/</code>:</p>
+<p>Nossos arquivos são baixados do repositório https://github.com/Victorgonl/GCC125-20222-GrupoU através do comando <code>wget</code> dentro da pasta <code>/var/www/html/</code>.</p>
 <pre><code>sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/index.html
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/ufla.png
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa1.html
@@ -509,8 +509,98 @@ sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/maste
 </code></pre>
 <p>Ao acessarmos novamente por um browser de uma máquina conectada às VM's por meio de VPN o endereço http://192.168.1.42, encontramos nossa página inicial.</p>
 <img src="TI-R1-3.3.png" width="750">
+<h2 id="34-habilitando-acesso-com-criptografia-https-no-servidor-web">3.4. Habilitando acesso com criptografia (https) no servidor web</h2>
+<p>Primeiro, verificamos que o pacote <code>openssl</code>está instalado em nossa máquina de servidor web, a VM de endereço <strong>192.168.1.42</strong>.</p>
+<pre><code>sudo apt install openssl
+</code></pre>
+<p>Em seguida, habilitamos os módulos <code>ssl</code> e <code>rewrite</code> do Apache.</p>
+<pre><code>sudo a2enmod ssl
+sudo a2enmod rewrite
+</code></pre>
+<p>Editamos o seguinte arquivo de configuração do Apache com <code>nano</code>.</p>
+<pre><code>sudo nano /etc/apache2/apache2.conf
+</code></pre>
+<p>E adicionamos as seguintes linhas:</p>
+<pre><code>[...]
+
+&lt;Directory /var/www/html&gt;
+    AllowOverride All
+&lt;/Directory&gt;
+</code></pre>
+<p>Criamos uma pasta para guardar o certificado ssl que será criado e abrimos a mesma.</p>
+<pre><code>sudo mkdir /etc/apache2/certificate
+cd /etc/apache2/certificate
+</code></pre>
+<p>Dentro da pasta, criamos uma chave privada e o certificado ssl.</p>
+<pre><code>sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out apache-certificate.crt -keyout apache.key
+</code></pre>
+<p>Neste ponto, entramos com as seguintes informações requisitadas:</p>
+<pre><code>Country Name (2 letter code) [AU]:BR
+State or Province Name (full name) [Some-State]:Minas Gerais
+Locality Name (eg, city) []:Lavras
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Universidade Federal de Lavras
+Organizational Unit Name (eg, section) []:Departamento de Ciência da Computação
+Common Name (e.g. server FQDN or YOUR name) []:192.168.1.42
+Email Address []:.
+</code></pre>
+<p>Em seguida, editamos o seguinte arquivo com o comando <code>nano</code>:</p>
+<pre><code>sudo nano /etc/apache2/sites-enabled/000-default.conf
+</code></pre>
+<p>O arquivo apresenta inicialmente as configurações:</p>
+<pre><code>&lt;VirtualHost *:80&gt;
+
+        [...]
+
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Modificamos o mesmo para as seguintes configurações:</p>
+<pre><code>&lt;VirtualHost *:443&gt;
+
+[...]
+
+        SSLEngine on
+        SSLCertificateFile /etc/apache2/certificate/apache-certificate.crt
+        SSLCertificateKeyFile /etc/apache2/certificate/apache.key
+
+&lt;/VirtualHost&gt;
+</code></pre>
+<p>Por fim reiniciamos o serviço do Apache.</p>
+<pre><code>sudo systemctl restart apache2
+</code></pre>
+<p>Testamos então o acesso a página inicial utilizando <code>http</code>.</p>
+<img src="TI-R1-3.4-1.png" width="750">
+<p>A página é carregada.</p>
+<img src="TI-R1-3.4-2.png" width="750">
+<p>Agora tentaremos acessar a página utilizando <code>https</code>.</p>
+<img src="TI-R1-3.4-3.png" width="750">
+<p>Inicialmente é gerado uma aviso de segurança <code>The certificate is not trusted because it is self-signed</code>, isto porque o certificado ssl foi criado pelo próprio servidor, o que não garante segurança real aos usuários.</p>
+<img src="TI-R1-3.4-4.png" width="750">
+<p>Ignorando o avisando, a página html criptografada é carregada.</p>
+<img src="TI-R1-3.4-5.png" width="750">
 <h1 id="4-acessando-os-relat%C3%B3rios-e-trabalhos-entregues-do-grupo-por-meio-do-servidor-web">4. Acessando os relatórios e trabalhos entregues do grupo por meio do servidor WEB</h1>
+<h2 id="41-relat%C3%B3rios-dos-trabalhos-de-instala%C3%A7%C3%A3o">4.1. Relatórios dos trabalhos de instalação</h2>
 <p>Este relatório poderá ser acessado por meio do link <strong>http://192.168.1.42/TI-Relatorio-Etapa1.html</strong> disponibilizado na página inicial acima.</p>
+<h2 id="42-trabalhos-em-packet-tracer">4.2.  Trabalhos em Packet Tracer</h2>
+<p>Os arquivos <code>.pkt</code> estão disponíveis na página inicial do servidor web.</p>
+<h1 id="5-refer%C3%AAncias">5. Referências</h1>
+<ul>
+<li>
+<p>KUROSE, Jim; ROSS, Keith W. Redes de computadores e a internet: uma abordagem<br>
+top-down. 7ed. São Paulo: Pearson, 2013.</p>
+</li>
+<li>
+<p>MORAES JÚNIOR, H. P.. Materiais da Disciplina GCC125 - Redes de Computadores. Universidade Federal de Lavras. Acesso em: 10 de jan. de 2023.</p>
+</li>
+<li>
+<p>Sincronize seus dispositivos Linux ou BSD. Disponível em: https://ntp.br/guia/linux/. Acesso em: 10 de jan. de 2023.</p>
+</li>
+<li>
+<p>chronyc - command-line interface for chrony daemon. Disponível em: https://manpages.ubuntu.com/manpages/jammy/man1/chronyc.1.html. Acesso em: 10 de jan. de 2023.</p>
+</li>
+<li>
+<p>Enable HTTPS on Apache. Disponível em: https://techexpert.tips/apache/enable-https-apache/. Acesso em: 10 de jan. de 2023.</p>
+</li>
+</ul>
 
 </body>
 </html>
