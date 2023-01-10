@@ -382,7 +382,18 @@ code {
 </ul>
 </li>
 </ul>
-<h1 id="1-altera%C3%A7%C3%A3o-da-senha-de-usu%C3%A1rio">1. Alteração da senha de usuário</h1>
+<h1 id="1-acesso-%C3%A0s-m%C3%A1quinas-virtuais-vms">1. Acesso às Máquinas Virtuais (VM's)</h1>
+<h2 id="11-acesso-ao-por-meio-de-vpn-para-sistemas-debian-e-ubuntu">1.1. Acesso ao por meio de VPN para sistemas Debian e Ubuntu</h2>
+<p>Primeiro, é necessário garantir a instalação do pacote <code>network-manager-openvpn-gnome</code>.</p>
+<pre><code>sudo apt install network-manager-openvpn-gnome
+</code></pre>
+<p>Acrecentamos uma nova VPN, importando o arquivo <code>laboratorio.ovpn</code> e logando com usuário e senha da UFLA.</p>
+<img src="TI-R1-1.1.png" width="750">
+<p>Após conectado, utilizamos o comando <code>ssh</code> em terminal local para acessar as VM's (<strong>192.168.1.41</strong> e <strong>192.168.1.42</strong>).</p>
+<pre><code>ssh aluno@192.168.1.41
+ssh aluno@192.168.1.42
+</code></pre>
+<h2 id="12-altera%C3%A7%C3%A3o-da-senha-padr%C3%A3o">1.2. Alteração da senha padrão</h2>
 <p>A senha do usuário <strong>aluno</strong> foi alterado em ambas as VM's (<strong>192.168.1.41</strong> e <strong>192.168.1.42</strong>) através do comando <code>passwd</code>. A nova senha é <strong>gpu2022/2</strong>.</p>
 <pre><code>sudo passwd
 </code></pre>
@@ -503,6 +514,7 @@ sudo apt install apache2
 <pre><code>sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/index.html
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/ufla.png
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa1.html
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-1.1.png
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.2-1.png
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.2-2.png
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.3.png
@@ -573,15 +585,15 @@ Email Address []:.
 <p>Por fim reiniciamos o serviço do Apache.</p>
 <pre><code>sudo systemctl restart apache2
 </code></pre>
-<p>Testamos então o acesso a página inicial utilizando <code>http</code>.</p>
+<p>Primeiro, acessamos a página inicial utilizando <code>http</code>.</p>
 <img src="TI-R1-3.4-1.png" width="750">
-<p>A página é carregada.</p>
+<p>A página é carregada com sucesso.</p>
 <img src="TI-R1-3.4-2.png" width="750">
 <p>Agora tentaremos acessar a página utilizando <code>https</code>.</p>
 <img src="TI-R1-3.4-3.png" width="750">
-<p>Inicialmente é gerado uma aviso de segurança <code>The certificate is not trusted because it is self-signed</code>, isto porque o certificado ssl foi criado pelo próprio servidor, o que não garante segurança real aos usuários.</p>
+<p>Inicialmente é gerado uma aviso de segurança no browser: <code>The certificate is not trusted because it is self-signed</code>, isto porque o certificado ssl foi criado pelo próprio servidor, o que não garante segurança real aos usuários.</p>
 <img src="TI-R1-3.4-4.png" width="750">
-<p>Ignorando o avisando, a página html criptografada é carregada.</p>
+<p>Ignorando o avisando, a página html criptografada é carregada com sucesso.</p>
 <img src="TI-R1-3.4-5.png" width="750">
 <h1 id="4-acessando-os-relat%C3%B3rios-e-trabalhos-entregues-do-grupo-por-meio-do-servidor-web">4. Acessando os relatórios e trabalhos entregues do grupo por meio do servidor WEB</h1>
 <h2 id="41-relat%C3%B3rios-dos-trabalhos-de-instala%C3%A7%C3%A3o">4.1. Relatórios dos trabalhos de instalação</h2>
