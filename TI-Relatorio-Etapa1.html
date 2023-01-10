@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Trabalho de Instalação - Relatório - Etapa 1</title>
+<title>Trabalho de Instalação - Relatório - Etapa 1/title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -364,10 +364,13 @@ code {
 <h1 id="trabalho-de-instala%C3%A7%C3%A3o---etapa-1">Trabalho de Instalação - Etapa 1</h1>
 <ul>
 <li>
-<p>Professor: Hermes Pimenta de Moraes Junior</p>
+<p>Professor: Hermes Pimenta de Moraes Júnior</p>
 </li>
 <li>
 <p>Turma: 10A</p>
+</li>
+<li>
+<p>Grupo: U</p>
 </li>
 <li>
 <p>Alunos:</p>
@@ -384,20 +387,21 @@ code {
 <pre><code>sudo passwd
 </code></pre>
 <h1 id="2-servi%C3%A7o-de-sincroniza%C3%A7%C3%A3o-de-hora">2. Serviço de sincronização de hora</h1>
-<h2 id="21-sincronizando-a-data-da-primeira-vm-com-um-servidor-do-ntpbr">2.1. Sincronizando a data da primeira VM com um servidor do NTP.br</h2>
-<p>Uma vez logado na VM <strong>192.168.1.41</strong> que se conectará em um servidor do NTP.br e que será a máquina hospedeira do tempo, utilizamos o seguinte comando para vizualizar a data e hora atual:</p>
+<h2 id="21-sincronizando-a-hora-da-primeira-vm-com-um-servidor-do-a-href%22httpsntpbr%22ntpbra">2.1. Sincronizando a hora da primeira VM com um servidor do <a href="https://ntp.br/">NTP.br</a></h2>
+<p>Uma vez logado na VM <strong>192.168.1.41</strong> que se conectará em um servidor do <a href="https://ntp.br/">NTP.br</a> e que será a máquina hospedeira do tempo para a VM <strong>192.168.1.42</strong>, utilizamos o seguinte comando para vizualizar a data e hora atual:</p>
 <pre><code>date
 </code></pre>
 <p>Instalamos o <em>chrony</em> utilizando o comando:</p>
 <pre><code>sudo apt install chrony
 </code></pre>
-<p>Interronpemos o serviço do <em>chrony</em> para modificar o arquivo de configuração:</p>
+<p>Interronpemos o serviço do <em>chrony</em> para modificar o arquivo de configuração dele:</p>
 <pre><code>sudo service stop chrony
 </code></pre>
-<p>Mudamos então o valor da hora para um valor inválido (00:00:00) para teste, com o seguinte comando e verificamos com o comando <code>date</code>:</p>
+<p>Mudamos então o valor da hora para um valor errado (00:00:00) para teste com o comando <code>timedatectl set-time</code> e verificamos com o comando <code>date</code>:</p>
 <pre><code>sudo timedatectl set-time 00:00:00
+date
 </code></pre>
-<p>Abrimos o seguinte arquivo de configuração do <em>chrony</em> na máquina <code>/etc/chrony/chrony.conf</code> para editar:</p>
+<p>Abrimos o seguinte arquivo de configuração do <em>chrony</em> na máquina <code>/etc/chrony/chrony.conf</code> para editar com o comando <code>nano</code>:</p>
 <pre><code>sudo nano /etc/chrony/chrony.conf
 </code></pre>
 <p>E configuramos para o seguinte estado, corforme o tutorial do <a href="https://ntp.br/guia/linux/">NTP.br</a>:</p>
@@ -450,14 +454,14 @@ leapsectz right/UTC
 <p>Utilizando novamente o comando <code>date</code> para verificar a data da máquina, percebemos que ela foi sincronizada, e se tentarmos alterá-la novamente com <code>sudo timedatectl set-time 00:00:00</code>, receberemos a seguinte mensagem de erro:</p>
 <pre><code>Failed to set time: Automatic time synchronization is enabled
 </code></pre>
-<h2 id="22-sincronizando-a-data-da-segunda-vm-com-a-primeira">2.2. Sincronizando a data da segunda VM com a primeira</h2>
-<p>Abrimos novamente o arquivo de configuração na primeira VM (192.168.1.41) com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos o seguinte trech, permitindo que a segunda VM (192.168.1.42) consiga acessar a primeira como cliente NTP:</p>
-<pre><code>...
+<h2 id="22-sincronizando-a-hora-da-segunda-vm-com-a-primeira">2.2. Sincronizando a hora da segunda VM com a primeira</h2>
+<p>Abrimos novamente o arquivo de configuração na primeira VM (192.168.1.41) com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos o seguinte trecho, permitindo que a segunda VM (192.168.1.42) consiga acessar a primeira como cliente NTP:</p>
+<pre><code>[...]
 
 # permitime acesso aos seguintes clientes NTP
 allow 192.168.1.42
 </code></pre>
-<p>Executamos os mesmos passos anteriores para instalação do <em>chrony</em> na segunda VM:</p>
+<p>Executamos os mesmos passos anteriores para instalação do <em>chrony</em> na segunda VM (192.168.1.42):</p>
 <pre><code>sudo apt install chrony
 sudo systemctl stop chrony
 </code></pre>
@@ -465,13 +469,13 @@ sudo systemctl stop chrony
 <pre><code>sudo timedatectl set-time 00:00:00
 date
 </code></pre>
-<p>Abrimos e modificamos o seguinte arquivo de configuração do <em>chrony</em> na máquina com o comando <code>sudo nano /etc/chrony/chrony.conf</code>e adicionamos a primeira máquina virtual como servidor a ser buscado:</p>
+<p>Abrimos e modificamos o seguinte arquivo de configuração do <em>chrony</em> na máquina com o comando <code>sudo nano /etc/chrony/chrony.conf</code> e adicionamos a primeira máquina virtual como servidor a ser buscado:</p>
 <pre><code># servidores publicos do NTP.br com NTS disponível
 server 192.168.1.41 iburst
 
-...
+[...]
 </code></pre>
-<p>Ativamos o serviço do <em>chrony</em> e verificamos com os seguintes comandos que a máquina está sincronizada com a máquina 192.168.1.41:</p>
+<p>Ativamos o serviço do <em>chrony</em> e verificamos com os seguintes comandos que o tempo da máquina está sincronizada com a máquina 192.168.1.41:</p>
 <pre><code>chronyc sources
 chronyc tracking
 date
@@ -489,13 +493,13 @@ sudo apt install apache2
 <p>A seguinte página do servidor web do Apache é exibida, mostrando o funcionamento.</p>
 <img src="TI-R1-3.2-2.png" width="750">
 <h2 id="33-inserindo-p%C3%A1ginas-html-no-servidor-web">3.3. Inserindo páginas html no servidor web</h2>
-<p>Com o seguinte comando, vamos ao diretório do servidor apache onde os arquivos html serão dispostos.</p>
+<p>Com o seguinte comando, vamos ao diretório do servidor apache onde os arquivos html serão dispostos:</p>
 <pre><code>cd /var/www/html/
 </code></pre>
-<p>Com o seguinte comando, removemos todos os arquivos da pasta a fim de preparar o ambiente para nossos arquivos</p>
+<p>Com o seguinte comando, removemos todos os arquivos da pasta a fim de preparar o ambiente para nossos arquivos:</p>
 <pre><code>sudo rm *
 </code></pre>
-<p>Nossos arquivos são baixados do repositório https://github.com/Victorgonl/GCC125 através do comando <code>wget</code>dentro da pasta <code>/var/www/html/</code></p>
+<p>Nossos arquivos são baixados do repositório https://github.com/Victorgonl/GCC125-20222-GrupoU através do comando <code>wget</code> dentro da pasta <code>/var/www/html/</code>:</p>
 <pre><code>sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/index.html
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/ufla.png
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa1.html
@@ -504,9 +508,9 @@ sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/maste
 sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.3.png
 </code></pre>
 <p>Ao acessarmos novamente por um browser de uma máquina conectada às VM's por meio de VPN o endereço http://192.168.1.42, encontramos nossa página inicial.</p>
-<h1 id="4-acessando-os-relat%C3%B3rios-e-trabalhos-entregues-do-grupo-por-meio-do-servidor-web">4. Acessando os relatórios e trabalhos entregues do grupo por meio do servidor WEB</h1>
-<p>Após a instalação do servidor Apache, sua página inicial padrão acima foi modificada a fim de criar uma nova página web que incorpora os trabalhos da equipe e seus relatórios.</p>
-<p>Estando conectado às VM's por meio de VPN, a página inicial pode ser acessada pelo endereço: http://192.168.1.42</p>
 <img src="TI-R1-3.3.png" width="750">
+<h1 id="4-acessando-os-relat%C3%B3rios-e-trabalhos-entregues-do-grupo-por-meio-do-servidor-web">4. Acessando os relatórios e trabalhos entregues do grupo por meio do servidor WEB</h1>
+<p>Este relatório poderá ser acessado por meio do link http://192.168.1.42/TI-Relatorio-Etapa1.html disponibilizado na página inicial acima.</p>
+
 </body>
 </html>
