@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TI-Relatorio-Etapa2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="p-style%22text-aligncenter%22img-src%22uflapng%22-width%22500%22br-departamento-de-ci%C3%AAncia-da-computa%C3%A7%C3%A3obr-gcc125---rede-de-computadores---20222br"><p style="text-align:center"><img src="ufla.png" width="500"><br> Departamento de Ciência da Computação<br>  GCC125 - Rede de Computadores - 2022/2<br></h1>
+<h1 id="trabalho-de-instala%C3%A7%C3%A3o---etapa-2">Trabalho de Instalação - Etapa 2</h1>
+<ul>
+<li>
+<p>Professor: Hermes Pimenta de Moraes Júnior</p>
+</li>
+<li>
+<p>Turma: 10A</p>
+</li>
+<li>
+<p>Grupo: U</p>
+</li>
+<li>
+<p>Alunos:</p>
+<ul>
+<li>David de Jesus Costa</li>
+<li>Eduardo Dezena Gonçalves</li>
+<li>Leonardo Elias Rodrigues</li>
+<li>Victor Gonçalves Lima</li>
+</ul>
+</li>
+</ul>
+<h1 id="1-servidor-ftp">1. Servidor FTP</h1>
+<h2 id="11-cria%C3%A7%C3%A3o-ftp">1.1. Criação FTP</h2>
+<pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
+// Atualiza Pacotes
+
+sudo apt install vsftpd
+//Comando para instalar o serviço ftp, o serviço vai ser iniciado após a instalação
+
+systemctl status vsftpd
+// Comando para verificar o status do serviço
+</code></pre>
+<img src="TI-R2-1.1.png" width="750">
+<pre><code>// Se não estivesse ativo iríamos usar o comando abaixo para iniciar:
+
+sudo systemctl enable --now vsftpd
+</code></pre>
+<h1 id="12-habilitar-as-portas-do-vsftpd">1.2. Habilitar as portas do VSFTPD:</h1>
+<p>O servidor não possui o serviço de firewall(ufw) instalado, a imagem abaixo mostra quando consultamos se ele existe:</p>
+<img src="TI-R2-1.2.png" width="750">
+<p>Caso possuíssemos, iríamos rodar os seguintes comandos:</p>
+<pre><code>sudo ufw allow 20/tcp
+sudo ufw allow 21/tcp
+sudo ufw allow 990/tcp
+sudo ufw allow 5000:10000/tcp
+
+//FTP usa a porta 20 para o modo ativo, porta 21 para comandos e as outras para modo passivo.
+</code></pre>
+<h1 id="13-atribuindo-permiss%C3%B5es-ao-usu%C3%A1rio">1.3. Atribuindo permissões ao usuário</h1>
+<p>Vamos utilizar o mesmo usuário do a acesso ao servidor que no caso é aluno para este trabalho.</p>
+<pre><code>sudo mkdir /ftp
+// Criando a pasta para o ftp
+
+sudo chown aluno /ftp
+// altera o proprietário do diretório /ftp para o usuário aluno
+</code></pre>
+<h1 id="14-configurando-o-ftp">1.4. Configurando o ftp</h1>
+<pre><code>sudo vim /etc/vsftpd.conf
+//Abrindo o arquivo de configuração do serviço vsftpd
+
+//Vamos retirar os comentários das seguintes linhas do arquivo de configuração:
+
+...
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+...
+
+//Pode ser que algumas configurações já estejam sem comentário entretanto são esse que precisamos tirar os comentários
+
+//Depois adicionamos a seguinte linha no final do arquivo de configuração:
+
+local_root=/ftp
+
+// Isto especifica o diretório raiz para o qual os usuários do FTP serão conectados após fazerem login
+
+//Para salvar o arquivo e fecha-lo no vim clicamos na teclas ESC depois digitamos :wq em as flags w=write e q=quit
+</code></pre>
+<h1 id="15-bloqueando-acesso-do-usu%C3%A1rio">1.5. Bloqueando acesso do usuário</h1>
+<p>Por questões de segurança, vamos bloquear o usuário do ftp a ter acesso<br>
+somente ao diretório padrão e seus sub diretórios, pois por padrão o ftp<br>
+permite ao usuário acessar todos os arquivos do servidor.</p>
+<pre><code>// Temos que retirar os comentários das seguintes linhas do arquivo de configuração citado anteriormente:
+
+...
+chroot_local_user=YES
+chroot_list_enable=YES
+chroot_list_file=/etc/vsftpd.chroot_list
+...
+
+// Vamos adicionar a seguinte linha
+
+allow_writeable_chroot=YES
+
+// Esse comando permite que os usuários com chroot habilitado possam gravar em seus diretórios raiz
+
+// vamos definir a permissão padrão para arquivos criados retirando o comentário da linha:
+
+local_umask=0002
+
+// clicamos em Esc e depois digitamos :wq para salvar e sair do arquivo
+</code></pre>
+<img src="TI-R2-1.7.png" width="750">
+<h1 id="18-testar-ftp">1.8. Testar FTP</h1>
+<pre><code>// Para testar o funcionamento do ftp utilizamos o filezilla, primeiro instalamos ele em nossas máquinas pessoal e rodamos ele com os respectivos comandos:
+
+sudo apt install filezilla
+sudo filezilla
+</code></pre>
+<p>Uma interface gráfica foi aberta e nela colocamos as informações necessárias para verificarmos o funcionamento do ftp.</p>
+<img src="TI-R2-1.8-1.png" width="750">
+<p>Obtivemos sucesso:</p>
+<img src="TI-R2-1.8-2.png" width="750">
+<h1 id="16-cria%C3%A7%C3%A3o-do-arquivo-chrootlist">1.6. Criação do arquivo chroot_list</h1>
+<pre><code>// Vamos criar o arquivo chroot_list para especificar quais usuários devem ser restritos a seus próprios diretórios de trabalho (chrooted) quando se conectam ao servidor FTP
+
+sudo touch /etc/vsftpd.chroot_list
+
+// Para verificar se o arquivo foi criado digitamos:
+sudo vim /etc/vsftpd.chroot_list
+</code></pre>
+<h1 id="17-aplicando-altera%C3%A7%C3%B5es">1.7. Aplicando Alterações</h1>
+<pre><code>// Para aplicarmos as alterações vamos reiniciar o serviço vsftpd com seguinte comando:
+
+sudo systemctl restart --now vsftpd
+
+// Agora para verificarmos se o serviço está rodando digitamos:
+
+sudo systemctl status vsftpd
+
+// O resultado será o abaixo:
+</code></pre>
+<h1 id="2-servidor-dns">2. Servidor DNS</h1>
+<h2 id="21-instala%C3%A7%C3%A3o-e-confiugura%C3%A7%C3%A3o-do-servidor-dns-na-vm-192168141">2.1. Instalação e confiuguração do servidor DNS na VM <code>192.168.1.41</code></h2>
+<p>Inicialmente, instalamos os pacotes na VM que será o servidor DNS (<code>192.168.1.41</code>)</p>
+<pre><code>sudo apt install bind9
+sudo apt install dnsutils
+</code></pre>
+<p>Verificamos o seguinte arquivo de configuração de servidores DNS.</p>
+<pre><code>sudo nano /etc/bind/named.conf.options
+</code></pre>
+<p>Ficando disposto assim:</p>
+<pre><code>forwarders {
+    1.1.1.1; // Cloudflare DNS
+    8.8.4.4; // Google DNS
+    8.8.8.8; // Google DNS
+};
+</code></pre>
+<p>Abrimos o arquivo:</p>
+<pre><code>sudo nano /etc/bind/named.conf.local
+</code></pre>
+<p>E adicionamos as seguintes configurações:</p>
+<pre><code>zone &quot;dns.grupou.gcc125.br&quot; {
+    type master;
+    file &quot;/etc/bind/db.dns.grupou.gcc125.br&quot;;
+};
+
+zone &quot;www.grupou.gcc125.br&quot; {
+    type master;
+    file &quot;/etc/bind/db.www.grupou.gcc125.br&quot;;
+};
+
+zone &quot;ftp.grupou.gcc125.br&quot; {
+    type master;
+    file &quot;/etc/bind/db.ftp.grupou.gcc125.br&quot;;
+};
+
+zone &quot;time.grupou.gcc125.br&quot; {
+    type master;
+    file &quot;/etc/bind/db.time.grupou.gcc125.br&quot;;
+};
+</code></pre>
+<p>Criamos os arquivos <code>db</code>dos domínios:</p>
+<pre><code>sudo cp /etc/bind/db.local /etc/bind/db.dns.grupou.gcc125.br
+sudo cp /etc/bind/db.local /etc/bind/db.www.grupou.gcc125.br
+sudo cp /etc/bind/db.local /etc/bind/db.ftp.grupou.gcc125.br
+sudo cp /etc/bind/db.local /etc/bind/db.time.grupou.gcc125.br
+</code></pre>
+<p>Editamos cada arquivo para configurar o endereços IPs dos serviços:</p>
+<pre><code>sudo nano /etc/bind/db.dns.grupou.gcc125.br
+sudo nano /etc/bind/db.www.grupou.gcc125.br
+sudo nano /etc/bind/db.ftp.grupou.gcc125.br
+sudo nano /etc/bind/db.time.grupou.gcc125.br
+</code></pre>
+<p><code>/etc/bind/db.dns.grupou.gcc125.br</code></p>
+<pre><code>;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     dns.grupou.gcc125.br. root.dns.grupou.gcc125.br. (
+                            2         ; Serial
+                        604800         ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      dns.grupou.gcc125.br.
+@       IN      A       192.168.1.41
+@       IN      AAAA    ::1
+</code></pre>
+<p><code>/etc/bind/db.www.grupou.gcc125.br</code></p>
+<pre><code>;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     www.grupou.gcc125.br. root.www.grupou.gcc125.br. (
+                            2         ; Serial
+                        604800         ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      www.grupou.gcc125.br.
+@       IN      A       192.168.1.42
+@       IN      AAAA    ::1
+</code></pre>
+<p><code>/etc/bind/db.ftp.grupou.gcc125.br</code></p>
+<pre><code>;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     ftp.grupou.gcc125.br. root.ftp.grupou.gcc125.br. (
+                            2         ; Serial
+                        604800         ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ftp.grupou.gcc125.br.
+@       IN      A       192.168.1.42
+@       IN      AAAA    ::1
+</code></pre>
+<p><code>/etc/bind/db.time.grupou.gcc125.br</code></p>
+<pre><code>;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     time.grupou.gcc125.br. root.time.grupou.gcc125.br. (
+                            2         ; Serial
+                        604800         ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@       IN      NS      time.grupou.gcc125.br.
+@       IN      A       192.168.1.41
+@       IN      AAAA    ::1
+</code></pre>
+<p>Reiniciamos o serviço</p>
+<pre><code>sudo systemctl restart bind9.service
+</code></pre>
+<p>Editamos o arquivo para resolver o <em>Reverse zone</em>:</p>
+<pre><code>sudo nano /etc/bind/named.conf.local
+
+zone &quot;1.168.192.in-addr.arpa&quot; {
+    type master;
+    file &quot;/etc/bind/db.1.168.192&quot;;
+};
+</code></pre>
+<p>Criamos o arquivo <code>/etc/bind/db.1.168.192</code></p>
+<p>sudo cp /etc/bind/db.127 /etc/bind/db.1.168.192</p>
+<p>E o editamos para o seguinte estado com <code>sudo nano /etc/bind/db.1.168.192</code>:</p>
+<pre><code>;
+; Zone file for 1.168.192.in-addr.arpa
+;
+$TTL 604800
+@ IN SOA grupou.gcc125.br. root.grupou.gcc125.br. (
+            3   ; Serial
+    604800   ; Refresh
+        86400   ; Retry
+    2419200   ; Expire
+    604800 ) ; Negative Cache TTL
+;
+@ IN NS ns.
+41 IN PTR ns.grupou.gcc125.br.
+</code></pre>
+<p>Então reiniciamos o serviço:</p>
+<pre><code>sudo systemctl restart bind9.service
+</code></pre>
+<p>Checamos nosso domínio criado com <code>nslookup grupou.gcc125.br</code> e obtemos a seguinte resposta indicando que o serviço está funcionando:</p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+** server can't find grupou.gcc125.br: NXDOMAIN
+</code></pre>
+<p>Checamos também o domínio de nossos serviços:</p>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	dns.grupou.gcc125.br
+Address: 192.168.1.41
+Name:	dns.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	www.grupou.gcc125.br
+Address: 192.168.1.42
+Name:	www.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	ftp.grupou.gcc125.br
+Address: 192.168.1.42
+Name:	ftp.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	time.grupou.gcc125.br
+Address: 192.168.1.41
+Name:	time.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p>Ao checarmos outros domínios externos também obtemos sucesso:</p>
+<p><code>nslookup www.google.com</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Non-authoritative answer:
+Name:	www.google.com
+Address: 142.251.132.4
+Name:	www.google.com
+Address: 2800:3f0:4001:833::2004
+</code></pre>
+<p><code>nslookup www.oul.com.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Non-authoritative answer:
+Name:	www.oul.com.br
+Address: 5.161.90.154
+</code></pre>
+<h2 id="22-configura%C3%A7%C3%A3o-da-vm-192168142-para-ser-cliente-dns-da-192168141">2.2. Configuração da VM <code>192.168.1.42</code> para ser cliente DNS da <code>192.168.1.41</code></h2>
+<p>Na máquina <code>192.168.1.42</code>, testamos o que acontece quando procuramos por um domínio externo:</p>
+<p><code>nslookup www.oul.com.br</code></p>
+<p>Server:		1.1.1.1<br>
+Address:	1.1.1.1#53</p>
+<p>Non-authoritative answer:<br>
+Name:	www.oul.com.br<br>
+Address: 5.161.90.154</p>
+<p>Percebemos que o servidor DNS <code>1.1.1.1</code> é o responsável pela resposta. Assim, editamos o seguinte arquivo removendo os servidores DNS pré-estabelecidos como <code>1.1.1.1</code>da Cloudflare, <code>8.8.8.8</code> da Google, etc. E deixamos apenas nosso servidor DNS:</p>
+<p><code>sudo nano /etc/resolv.conf</code></p>
+<pre><code>domain dns.grupou.gcc125.br
+search dns.grupou.gcc125.br
+nameserver 192.168.1.41
+</code></pre>
+<p>Ao testarmos novamente a procura, obtemos a seguinte resposta utilizando nosso servidor DNS:</p>
+<p><code>nslookup www.oul.com.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Non-authoritative answer:
+Name:	www.oul.com.br
+Address: 5.161.90.154
+</code></pre>
+<p><code>nslookup www.google.com</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Non-authoritative answer:
+Name:	www.google.com
+Address: 142.250.219.164
+Name:	www.google.com
+Address: 2800:3f0:4001:833::2004
+</code></pre>
+<p>O mesmo para nossos serviçõs:</p>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	dns.grupou.gcc125.br
+Address: 192.168.1.41
+Name:	dns.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	dns.grupou.gcc125.br
+Address: 192.168.1.41
+Name:	dns.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	dns.grupou.gcc125.br
+Address: 192.168.1.41
+Name:	dns.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<p><code>nslookup dns.grupou.gcc125.br</code></p>
+<pre><code>Server:		192.168.1.41
+Address:	192.168.1.41#53
+
+Name:	dns.grupou.gcc125.br
+Address: 192.168.1.41
+Name:	dns.grupou.gcc125.br
+Address: ::1
+</code></pre>
+<h1 id="3-atualiza%C3%A7%C3%A3o-do-servidor-web">3. Atualização do servidor WEB</h1>
+<p>No servidor WEB (<code>192.168.1.42</code>), foi adicionado o restante dos trabalhos em Packet Tracer, assim como esta documentação. Com o seguinte comando, vamos ao diretório do servidor apache onde os arquivos html serão dispostos:</p>
+<pre><code>cd /var/www/html/
+</code></pre>
+<p>Com o seguinte comando, removemos todos os arquivos da pasta a fim de preparar o ambiente para nossos arquivos.</p>
+<pre><code>sudo rm *
+</code></pre>
+<p>Nossos arquivos são baixados do repositório <a href="https://github.com/Victorgonl/GCC125-20222-GrupoU">https://github.com/Victorgonl/GCC125-20222-GrupoU</a> através do comando <code>wget</code> dentro da pasta <code>/var/www/html/</code>.</p>
+<pre><code>sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/index.html
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/ufla.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa1.html
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa2.html
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa1.pdf
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-Relatorio-Etapa2.pdf
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-1.1.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.2-1.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.2-2.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.3.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.4-1.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.4-2.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.4-3.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.4-4.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R1-3.4-5.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R2-1.1.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R2-1.2.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R2-1.7.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R2-1.8-1.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R2-1.8-2.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/TI-R2-3.png
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/PT-1.pkt
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/PT-2.pkt
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/PT-3.pkt
+sudo wget https://raw.githubusercontent.com/Victorgonl/GCC125-20222-GrupoU/master/PT-4.pkt
+</code></pre>
+<p>A página WEB atualizada:</p>
+<img src="TI-R2-3.png" width="750">
+<h1 id="4-refer%C3%AAncias">4. Referências</h1>
+<ul>
+<li>
+<p>KUROSE, Jim; ROSS, Keith W. Redes de computadores e a internet: uma abordagem<br>
+top-down. 7ed. São Paulo: Pearson, 2013.</p>
+</li>
+<li>
+<p>MORAES JÚNIOR, H. P.. Materiais da Disciplina GCC125 - Redes de Computadores. Universidade Federal de Lavras. Acesso em: 10 de jan. de 2023.</p>
+</li>
+<li>
+<p>Domain Name Service (DNS). Disponível em: https://ubuntu.com/server/docs/service-domain-name-service-dns. Acesso em: 05 de mar. de 2023.</p>
+</li>
+<li>
+<p>How To Change DNS On Linux. Disponível em: https://www.linuxfordevices.com/tutorials/linux/change-dns-on-linux. Acesso em: 05 de mar. de 2023.</p>
+</li>
+</ul>
+
+</body>
+</html>
